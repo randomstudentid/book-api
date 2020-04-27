@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Service</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body style="background: #3e3e3e">
+	<p class="title">Σελίδα διαχείρησης Ηλεκτρονικής Βιβλιοθήκης</p>
+
+	<a href="https://www.hua.gr/index.php/el/" target="_blank"><img class="logo" src="https://www.edarabia.com/wp-content/uploads/2018/05/harokopio-university-athens-greece.png" alt="Harokopeio University" width="5%" height="5%"></a>
+    <!-- Using a reference to Harokopeio to make the webpage look a little less sketchy -->
+
+	<div style="display: inline">
+		<div style="display: flex">
+			<form id="form1" class="form_submit" >
+				<h2>Add a book:</h2>
+				<label for="author">Author:</label><br>
+				<input id="name1" required="required" class="input_field" type="text" name="author" placeholder="Select Author's Name"><br>
+				<label for="title">Title:</label><br>
+				<input id="title1" required="required" class="input_field" type="text" name="title" placeholder="Select Book's Title"><br>
+				<label for="genre">Genre:</label><br>
+			  	<select id="genre1" class="genre" name="genre" required>
+			  		<option value="">Select Genre</option>
+				    <option value="Science fiction">Science fiction</option>
+				    <option value="Satire">Satire</option>
+				    <option value="Drama">Drama</option>
+				    <option value="Action and Adventure">Action and Adventure</option>
+				    <option value="Romance">Romance</option>
+				    <option value="Mystery">Mystery</option>
+				    <option value="Horror">Horror</option>
+			  	</select><br>
+				<label for="price">Price:</label><br>
+				<input id="price1" required="required" class="input_field" type="number" step="0.01" min="0" max="99999" step="1" name="price" placeholder="Select Price"><br>
+				<input id="input_button" class="submit" type="submit" value="Υποβολή"><br>
+			</form>
+			<form id="form2" class="form_submit" >
+				<h2>Search books:</h2>
+				<label for="author">Author:</label><br>
+				<input id="name2" class="input_field" type="text" name="author" placeholder="Select Author's Name"><br>
+				<label for="title">Title:</label><br>
+				<input id="title2" class="input_field" type="text" name="title" placeholder="Select Book's Title"><br>
+				<label for="genre">Genre:</label><br>
+			  	<select id="genre2" class="genre" name="genre">
+			  		<option value="">Select Genre</option>
+				    <option value="Science fiction">Science fiction</option>
+				    <option value="Satire">Satire</option>
+				    <option value="Drama">Drama</option>
+				    <option value="Action and Adventure">Action and Adventure</option>
+				    <option value="Romance">Romance</option>
+				    <option value="Mystery">Mystery</option>
+				    <option value="Horror">Horror</option>
+			  	</select><br>
+				<label for="price">Starting Price:</label><br>
+				<input id="price2" class="input_field" type="number" step="0.01" min="0" max="99999" step="1"name="price" placeholder="Select Price"><br>
+				<input class="search" type="submit" value="Αναζήτηση"><br>
+			</form>
+		</div><br>
+		<div id="results" class="form_submit"></div>
+	</div>
+	
+	<script src="front.js"></script>
+</body>
+</html>
