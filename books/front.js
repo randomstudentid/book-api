@@ -44,11 +44,6 @@ async function submitFunction(e){
 
 async function searchFunction(e){
 	e.preventDefault();
-	// Clearing the div used to display the books
-	var div = document.getElementById('results');
-	while(div.firstChild){
-		div.removeChild(div.firstChild);
-	}
 	//Taking the information out of the html form to construct the SQL query 
 	var name = document.getElementById("name2").value;
 	var title = document.getElementById("title2").value;
@@ -73,11 +68,16 @@ async function searchFunction(e){
 	// request state change event
 	xhr.onreadystatechange = function() {
 
-	  // request completed?
-	  if (this.readyState == 4 && this.status == 200) {
-        var library = JSON.parse(this.responseText);
-	    // request successful - show response
-	    if (library.length != 0) {
+	// request completed?
+	if (this.readyState == 4 && this.status == 200) {
+	// Clearing the div used to display the books
+		var div = document.getElementById('results');
+		while(div.firstChild){
+			div.removeChild(div.firstChild);
+		}
+        	var library = JSON.parse(this.responseText);
+	    	// request successful - show response
+	    	if (library.length != 0) {
 			const header = document.createElement('h2');
 			header.textContent = 'Aποτελέσματα αναζήτησης:';
 			document.getElementById("results").append(header);
