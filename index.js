@@ -3,8 +3,9 @@ const app = express();
 var sqlite3 = require("sqlite3").verbose();
 let books = [];
 
-app.listen(3000, function() {
-  console.log("listening at port 3000");
+var port = process.env.PORT;
+app.listen(port, function() {
+	 console.log(`listening at port ${port}`);
 });
 app.use(express.static("books"));
 app.use(express.json());
