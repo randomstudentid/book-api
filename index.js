@@ -2,18 +2,18 @@ const express = require("express");
 const app = express();
 var sqlite3 = require("sqlite3").verbose();
 let books = [];
-
-var port = process.env.PORT;
+var port = process.env.PORT || 3000;
 app.listen(port, function() {
-	 console.log(`listening at port ${port}`);
+  console.log(`listening at port ${port}`);
 });
 app.use(express.static("books"));
 app.use(express.json());
 
+// Inserting books in the database
 app.post("/insertBook", function(request, response) {
   var book = request.body;
   console.log(book);
-  var db = new sqlite3.Database("./books.sqlite3");
+  var db = new sqlite3.Database("./.data/books.sqlite3");
   db.run(
     `INSERT INTO books(id,author,title,genre,price) VALUES(?,?,?,?,?)`,
     [null, book.name, book.title, book.genre, parseFloat(book.price)],
@@ -32,10 +32,13 @@ app.post("/insertBook", function(request, response) {
   );
 });
 
+// This operation of the server exists because the exercise asked for 
+// a way to filter books based on the name of the book but is never used from the HTML page
+// because the next operation can filter books based on all of their attributes.
 app.get("/books/title/:title", function(req, res) {
   const title = req.params.title;
   console.log(JSON.stringify(req.params));
-  var db = new sqlite3.Database("./books.sqlite3");
+  var db = new sqlite3.Database("./.data/books.sqlite3");
   var data = req.body;
   db.all(`SELECT * FROM books WHERE title LIKE '%${title}%'`, function(
     err,
@@ -50,11 +53,12 @@ app.get("/books/title/:title", function(req, res) {
   });
 });
 
+// The search function of the api used by the HTML page for searching through the database
 app.get("/books/title/:title/author/:name/genre/:genre/price/:price", function(
   req,
   res
 ) {
-  var db = new sqlite3.Database("./books.sqlite3");
+  var db = new sqlite3.Database("./.data/books.sqlite3");
   var data = req.params;
   if (data.name === "*") {
     data.name = "";
