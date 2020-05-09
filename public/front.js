@@ -16,7 +16,7 @@ async function submitFunction(e) {
   var json_data = JSON.stringify(data);
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/insertBook", true);
+  xhr.open("POST", "/insertBook");
   xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
   xhr.onload = function() {
     var json = JSON.parse(xhr.responseText);
@@ -63,10 +63,7 @@ async function searchFunction(e) {
       price = "*";
     }
     let xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      `/books/title/${title}/author/${name}/genre/${genre}/price/${price}`
-    );
+    xhr.open("GET",`/books/title/${title}/author/${name}/genre/${genre}/price/${price}`);
 
     // request state change event
     xhr.onreadystatechange = function() {

@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log(`listening at port ${port}`);
 });
-app.use(express.static("books"));
+app.use(express.static("public"));
 app.use(express.json());
 
 // Inserting books in the database
@@ -32,9 +32,9 @@ app.post("/insertBook", function(request, response) {
   );
 });
 
-// This operation of the server exists because the exercise asked for 
+// This GET operation of the server exists because the exercise asked for 
 // a way to filter books based on the name of the book but is never used from the HTML page
-// because the next operation can filter books based on all of their attributes.
+// because the following GET operation can filter books based on all of their attributes.
 app.get("/books/title/:title", function(req, res) {
   const title = req.params.title;
   console.log(JSON.stringify(req.params));
@@ -84,4 +84,8 @@ app.get("/books/title/:title/author/:name/genre/:genre/price/:price", function(
     }
   );
   console.log(req.params);
+});
+
+app.get('/*', function(req,res){
+  res.sendFile('/frontend.html',{ root: './public' });
 });
